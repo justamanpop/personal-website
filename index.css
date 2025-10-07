@@ -1,0 +1,31 @@
+body {
+	background-color: #010b3d;
+	color: white;
+	display: grid;
+	grid-template-columns: 10% 1fr 
+}
+
+.sidebar {
+	padding: 0.25rem;
+}
+
+
+.sidebar a {
+	text-decoration: none;
+	color: grey;
+}
+
+.sidebar-item {
+	padding-bottom: .75rem;
+}
+
+.active {
+	color: #9AE3B5 !important;
+}
+
+.main {
+}
+
+.header {
+	justify-self: center;
+}
