@@ -5,10 +5,10 @@ body {
 	grid-template-columns: 10% 1fr 
 }
 
+/* sidebar */
 .sidebar {
 	padding: 0.25rem;
 }
-
 
 .sidebar a {
 	text-decoration: none;
@@ -20,12 +20,47 @@ body {
 }
 
 .active {
-	color: #9AE3B5 !important;
+	color: #9ae3b5 !important;
 }
 
-.main {
+
+/* home page */
+.home-main {
+	margin: 1rem;
+	font-size: 1.5rem;
 }
 
-.header {
-	justify-self: center;
+.home-main a {
+	text-decoration: none;
+}
+
+/* writing page */
+.writing-main {
+	margin-top: 3rem;
+}
+
+.writing-divider hr {
+	border: 0 none;
+	height: 1px;
+	background-color: grey;
+}
+
+.writing-main a {
+	text-decoration: none;
+	color: white;
+	font-weight: bold;
+}
+
+.writing-list-item {
+	width: 60%;
+	display: grid;
+	grid-template-columns: 75% 25%;
+}
+
+.writing-list-item-date {
+	color: grey;
+}
+
+.writing-divider {
+	width: 60%;
 }

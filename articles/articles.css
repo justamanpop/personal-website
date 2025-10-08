@@ -1,0 +1,29 @@
+body {
+	background-color: #010b3d;
+	color: white;
+	display: grid;
+	grid-template-columns: 10% 1fr 
+}
+
+/* sidebar */
+.sidebar {
+	padding: 0.25rem;
+}
+
+.sidebar a {
+	text-decoration: none;
+	color: grey;
+}
+
+.sidebar-item {
+	padding-bottom: .75rem;
+}
+
+.active {
+	color: #9ae3b5 !important;
+}
+
+
+.article-heading-date {
+	color: grey
+}
