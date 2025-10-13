@@ -64,3 +64,22 @@ body {
 .writing-divider {
 	width: 60%;
 }
+
+
+/* skills page */
+.skills-main li {
+	margin-bottom: 1rem;
+}
+
+.skills-sub-content {
+	padding-left: 2rem;
+}
+
+/* skills page */
+.projects-main li {
+	margin-bottom: 1rem;
+}
+
+.projects-sub-content {
+	padding-left: 2rem;
+}

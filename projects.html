@@ -1,0 +1,83 @@
+<html>
+
+<head>
+	<link rel="stylesheet" href="index.css">
+	</link>
+</head>
+
+<body>
+	<div class="sidebar">
+		<div class="sidebar-item">
+			<a href="index.html">Home</a><br />
+		</div>
+		<div class="sidebar-item">
+			<a href="skills.html">Skills</a>
+		</div>
+		<div class="sidebar-item">
+			<a href="projects.html" class="active">Projects</a>
+		</div>
+		<div class="sidebar-item">
+			<a href="writing.html">Writing</a>
+		</div>
+	</div>
+	<div class="projects-main">
+		<h3>Projects I'm proud of professionally and personally</h3>
+		<h2>Professional</h2>
+		<div class="projects-sub-content">
+			<ul>
+				<li>
+					<h4>Framework to run multi-day E2E tests:</h4>
+					Built from scratch using AWS step
+					functions to orchestrate and manage E2E tests that took more than
+					one day. It included features like polling and waiting for a task to complete,
+					retries, ability to easily add and remove test cases, consolidated reports
+					showing all the steps, CICD, and so on.
+
+					It taught me the value of constantly building a minimal, working, partial
+					solution first and then refining on that. If I had tried to implement all the
+					aspects the moment I started, I would definitely have failed
+				</li>
+				<li>
+					<h4>Optimizing the API CICD pipeline:</h4>
+					The pipeline ran every time a PR was raised and had to pass before merging to
+					trunk was allowed Run time of the entire pipeline was starting to exceed one
+					hour, and this significantly slowed down development
+					People had lot of idle time waiting for it to finish to merge, and if multiple
+					people wanted to merge, it could take all day just to merge and deploy your
+					changes.<br /><br />
+
+					I introduced parallelism to API test suite runs to reduce the time by 1/6th.
+					Cut down run time from 50ish minutes to around 22 minutes. This really sped up
+					development. Shorter feedback loops, code could be written, tested
+					integrated/deployed that much faster. I genuinely believe it had a good impact
+					on how much we could deliver.<br /><br />
+
+					The second change was to run only a subset of stages in the pipeline based on
+					what files were changed in the PR. For example, a stage related to verifying DB
+					migrations now only ran if migration related files were changed. This cut around
+					10 minutes from each run, as unnecessary validation was now skipped.<br /><br />
+
+					Technically, it was a good challenge. It involved a bunch of bash scripting to
+					run things in parallel, calculate and parse git diffs, and so on, while alos
+					profiling and grouping tests into approximately even chunks
+
+					But I'm more proud of identifying a problem we had as a team, and proactively
+					working on it outside my regular assigned work, and showing up with a working
+					solution to ask for permission to implement.
+				</li>
+				<li></li>
+			</ul>
+		</div>
+		<br>
+		<h3>Personal</h3>
+		<div class="projects-sub-content">
+			<ul>
+				<li></li>
+				<li></li>
+				<li></li>
+			</ul>
+		</div>
+	</div>
+</body>
+
+</html>
