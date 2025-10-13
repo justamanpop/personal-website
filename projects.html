@@ -19,6 +19,9 @@
 		<div class="sidebar-item">
 			<a href="writing.html">Writing</a>
 		</div>
+		<div class="sidebar-item">
+			<a href="read_list.html">Read List</a>
+		</div>
 	</div>
 	<div class="projects-main">
 		<h3>Projects I'm proud of professionally and personally</h3>
@@ -65,16 +68,55 @@
 					working on it outside my regular assigned work, and showing up with a working
 					solution to ask for permission to implement.
 				</li>
-				<li></li>
+				<li>
+					<h4>Driving refactoring of our UI codebase:</h4>
+					The UI codebase had some pretty huge, big ball of mud style components that were
+					not testable, frequently caused defects, and were hard to extend or modify
+					without something breaking. Most effort in a sprint was also put into adding
+					features or fixing bugs, refactoring and maintenance were not
+					priorities.<br /><br />
+
+					Starting on the path to fix it was 100% a team effort, and there were people on
+					the team who contributed much more than I did. But I made that initial pitch
+					asking for refactoring time and discussed and helped form a plan of what would
+					be refactored when we did get the bandwidth to do it.<br /><br />
+
+					Since unit tests were mostly not available, helped set up a UI test automation
+					repo and pipeline that tested at the E2E level and got it into reasonable
+					shape to be able to run every day without false failures.This way, there would
+					at least be some cover telling us when we broke something when
+					refactoring<br /><br />
+
+					We did eventually get bandwidth to refactor, and made a lot of progress. There's
+					a long way to go, but the codebase is definitely healthier than it was, and a
+					system is in place to enable further refactoring to happen
+				</li>
 			</ul>
 		</div>
 		<br>
 		<h3>Personal</h3>
+		These mostly consist of small projects I made for myself that I actually use. I keep starting
+		projects/try new languages/frameworks, losing steam and abandoning them, have not been
+		disciplined enough to dive deep and finish a large project, or contributed much to open source. It's
+		something I'm trying to improve on
 		<div class="projects-sub-content">
 			<ul>
-				<li></li>
-				<li></li>
-				<li></li>
+				<li>
+					<h4>Cross out neovim plugin:</h4>
+					A simple plugin that lets you cross out and uncross a line of text. I made it
+					because I wanted something minimal I could use to check off requirements or
+					points in a text file when developing.
+				</li>
+				<li>
+					<h4>Flashing timer phone app:</h4>
+					I played football in a low level league, and one important aspect is to scan
+					behind you when the ball is coming, so you know what to do next. I made a simple
+					mobile app that at a configurable interval and duration, flashed with a
+					different color, and based on the color, the player is supposed to do something
+					different with the incoming ball. The idea is to place this behind a player and
+					pass to him, and they must scan behind, recognize the color flashing on the
+					phone, and act accordingly. I wasn't the best player, but it defnitely helped :)
+				</li>
 			</ul>
 		</div>
 	</div>

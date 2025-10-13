@@ -75,11 +75,16 @@ body {
 	padding-left: 2rem;
 }
 
-/* skills page */
+/* projects page */
 .projects-main li {
 	margin-bottom: 1rem;
 }
 
 .projects-sub-content {
 	padding-left: 2rem;
+}
+
+/* read_list page */
+.read-list-main li {
+	margin-bottom: 1rem;
 }
