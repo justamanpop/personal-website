@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<link rel="stylesheet" href="articles.css">
+	<title>Paralellize CI/CD</title>
+</head>
+
+<body>
+	<div class="sidebar">
+		<div class="sidebar-item">
+			<a href="../index.html">Home</a><br />
+		</div>
+		<div class="sidebar-item">
+			<a href="../skills.html">Skills</a>
+		</div>
+		<div class="sidebar-item">
+			<a href="../projects.html">Projects</a>
+		</div>
+		<div class="sidebar-item">
+			<a href="../articles.html" class="active">Writing</a>
+		</div>
+	</div>
+	<div>
+		<div class="article-main" role="main">
+			<div class="article-heading">
+				<div class="article-heading-name">
+					<h2 class="article-heading-title">Speed up CI/CD part 1: Parallelize work</h2>
+				</div>
+				<div class="article-heading-date">
+					<h2>12th September 2026</h2>
+				</div>
+			</div>
+
+			<h3>This article focuses on parallelizing tasks your CI/CD pipeline does</h3>
+
+			<h3>Why CI/CD?</h3>
+			<p>
+				Manually deploying each time you make a change is error-prone and time wasting. Asking
+				an agent to do it might work, but if you're taking the effort to write out a skill
+				detailing how to run tests, build and deploy your project, you might as well set up
+				CI/CD for it. It's cheaper and fully deterministic, with no chance of unpredecitability
+				(unlike an LLM, which could randomly do something different any time)
+			</p>
+			<p>
+				Especially with agents and AI doing more and more work, having a robust CI/CD
+				pipeline to ensure you don't break things when shipping is crucial. Otherwise,
+				with the huge volume of code that gets shipped, increasingly without thorough
+				human review because of the sheer quantity of it, it's very likely something
+				breaks.
+			</p>
+			<hr>
+			<h3>Why fast CI/CD?</h3>
+			<p>
+				Because CI/CD is the bottleneck for how fast you can iterate and ship. If it's slow,
+				despite finishing work quickly and wanting to ship, you're stuck waiting for CI/CD to
+				finish before you can proceed. Time is wasted, agility is reduced, flow state is broken.
+			</p>
+			<p>
+				With agents and AI, this delay would apply to all changes they make too. Skipping CI/CD
+				so as to not slow down is risky, but waiting long periods each time means you're going
+				much slower than you could. Fast CI/CD gives you safety while maintaining speed.
+			</p>
+			<hr>
+
+			<h3>Parallelize</h3>
+			<h4>1. Parallelize stages that do not depend on each other</h4>
+			<p>
+				For example, we have a backend repository with api code in one folder and code for AWS
+				lambda function in another at work. Both have tests that are run as part of CI/CD.
+
+				These test runs have no dependency on each other. They can be run at the same time, so
+				instead of waiting for 5 minutes for the API tests to run, then another 5 minutes
+				for the lambda tests, you can start both at the same time and wait just once.
+			</p>
+			<p>
+				This parallelization can be done in many ways. You could launch each stage in a separate
+				machine, or simpler and cheaper, run both in parallel on the same machine.
+				It can be as simple as:<br>
+				```<br>
+				#! /bin/bash<br>
+				# script for run tests stage<br>
+				test_api &<br>
+				test_lambdas &<br>
+				```<br>
+				CICD runners like Github actions and Jenkins will also have their own mechanisms to
+				parallelize, you can find out by looking at their documentation.
+			</p>
+
+			<h4>2. Parallelize work within the same stage</h4>
+			<p>
+				This can be more complicated. A single task itself can potentially be split into
+				independent chunk of works you can run in parallel, instead of doing the whole thing at
+				once.
+			</p>
+			<p>
+				Sometimes the command supports concurrency/parallelism, and you just have to configure
+				it. E.g: Junit doesn't parallelize by default, but you can
+				<a
+					href="https://docs.junit.org/6.1.3/writing-tests/parallel-execution.html">configure</a>
+				it to do so.
+			</p>
+			<p>
+				But sometimes you have to setup the parallel work yourself. For example, the API
+				integration tests at work run against a local Postgres database container. These are
+				delibirately run sequentially, because these tests modify the same tables, and multiple
+				tests operating on the same table at the same time could result in both tests failing,
+				because each test might need the data in the table to be in a specific way.
+			</p>
+			<p>
+				A test for GET /users might populate the users table with 3 users and assert only those
+				3 are returned. A test for POST /users at the same time could create a 4th entry, making
+				the GET /users test fail.
+			</p>
+			<p>
+				The solution I came up with was to group tests into multiple parts, and give each part
+				its own Postgres database container. Each part can then run in parallel without
+				affecting the other. There was no built in way to do this, setup work to
+				group tests, create containers for each, and experiments with what tests to put in what
+				group to ensure each group was approximately even had to be done myself.
+			</p>
+			<hr>
+
+			<h3>Conclusion</h3>
+			<p>
+				Parallelizing independent work can be a cheap and easy speed up waiting for you. Just
+				give some thought to what does not need to run one after the other. Heck, use AI for
+				simple analysis and implementation.
+			</p>
+			<p>
+				And if you find yourself frequently waiting and bottlenecked by slow CI/CD runs with no
+				simpler stage level parallelization opportunities, consider how to split up and
+				parallelize work within a single stage. A one time effort now to analyze and setup could
+				speed up all future runs for everyone in your team. It pays itself back very quickly.
+			</p>
+			<p>
+				Or, don't. If it's fast enough and there are other things to focus on, let it be. Not
+				all optimization is worth doing, be pragmatic.
+			</p>
+		</div>
+	</div>
+</body>
+
+</html>
